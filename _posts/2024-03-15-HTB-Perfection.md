@@ -3,13 +3,11 @@ title: HTB:Perfection
 date: 2024-03-15
 categories: [HTB]
 tags: [HTB]     # TAG names should always be lowercase
+image:
+  path: https://i.ibb.co/ftpjjzd/perfection.jpg
 ---
 
-# HTB: Perfection
-
-![perfection](https://i.ibb.co/ftpjjzd/perfection.jpg)
-
-# Enumeration
+## Enumeration
 
 ![nmap-scan](https://i.ibb.co/PF5YTgz/nmap-scan.jpg)
 
@@ -25,7 +23,7 @@ The initial Nmap scan reveals two open ports: SSH (22/tcp) and HTTP (80/tcp). SS
 
 ![calc](https://i.ibb.co/XXJnmDK/perfection-calc.jpg)
 
-After figuring out Weight grade calc is Vulnerable to [SSTI](https://book.hacktricks.xyz/pentesting-web/ssti-server-side-template-injection), I tried some SSTI payloads related to ruby, since the WebApp is built with Ruby.
+After figuring out Weight grade calc is Vulnerable to [SSTI](https://book.hacktricks.xyz/pentesting-web/ssti-server-side-template-injection), I tried some Ruby related SSTI payloads, since the WebApp is built with Ruby.
 
 ```ruby
 <%= 7*7 %> = 49
@@ -90,9 +88,12 @@ After further enumerations , found a hash for Susan .
 
 ![mail](https://i.ibb.co/s2CMP1X/mail.jpg)
 
- Create ​a mask and crack the hash with hashcat to retrieve the root access password.
+ Customize ​a mask and crack the hash with hashcat to retrieve the root access password.
 
     hashcat -m 1400 hash.txt -a 3 susan_nasus_?d?d?d?d?d?d?d?d?d
 
-`sudo su`
+```shell
+sudo su
+```
 
+![root](https://i.ibb.co/NjF6wdn/root.jpg)
