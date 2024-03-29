@@ -1,8 +1,8 @@
 ---
 title: HTB:Perfection
 date: 2024-03-15
-categories: [HTB]
-tags: [HTB]     # TAG names should always be lowercase
+categories: [HTB, LINUX]
+tags: [htb, linux]     # TAG names should always be lowercase
 image:
   path: https://i.ibb.co/ftpjjzd/perfection.jpg
 ---
