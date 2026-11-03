@@ -4,7 +4,7 @@ date: 2025-03-06
 categories: [SOC, SIEM, LAB]
 tags: [soc, siem, lab]     # TAG names should always be lowercase
 image:
-  path: https://i.ibb.co/WvgKYm1W/soc-lab-SIEM.jpg
+  path: https://res.cloudinary.com/dqsgviic/image/upload/soc-lab-SIEM.jpg
 ---
 
 In this guide, I'll walk you through setting up a honeypot, capturing real-world attack attempts, forwarding logs to a SIEM, visualizing attacker locations using **Microsoft Sentinel** and implementing automated security responses to detect and mitigate threats in real-time.
@@ -24,16 +24,16 @@ In this guide, I'll walk you through setting up a honeypot, capturing real-world
 
 ### - Create a resource group
 
-![1](https://i.ibb.co/S46hmvFt/1.png)
-![2](https://i.ibb.co/k6wKDMQQ/2.png)
-![3](https://i.ibb.co/1tWP0syN/3.png)
+![1](https://res.cloudinary.com/dqsgviic/image/upload/1.png)
+![2](https://res.cloudinary.com/dqsgviic/image/upload/2.png)
+![3](https://res.cloudinary.com/dqsgviic/image/upload/3.png)
 
 ### - Create a Virtual Network
 
-![4](https://i.ibb.co/bgZJcJGT/4.png)
-![5](https://i.ibb.co/W4Q6tJPr/5.png)
-![6](https://i.ibb.co/8DT6939P/6.png)
-![7](https://i.ibb.co/yn9xY1CV/7.png)
+![4](https://res.cloudinary.com/dqsgviic/image/upload/4.png)
+![5](https://res.cloudinary.com/dqsgviic/image/upload/5.png)
+![6](https://res.cloudinary.com/dqsgviic/image/upload/6.png)
+![7](https://res.cloudinary.com/dqsgviic/image/upload/7.png)
 
 ### - Create a Windows 10 VM
 
@@ -43,15 +43,15 @@ In this guide, I'll walk you through setting up a honeypot, capturing real-world
 4.  Modify the **Network Security Group (NSG)** to allow **all inbound traffic**.
 5.  Deploy the VM.
 
-![8](https://i.ibb.co/nNTF7S3B/8.png)
-![9](https://i.ibb.co/s9bVJW0g/9.png)
+![8](https://res.cloudinary.com/dqsgviic/image/upload/8.png)
+![9](https://res.cloudinary.com/dqsgviic/image/upload/9.png)
 
 ### - Disable Windows Firewall
 
 Run `wf.msc` and turn off all profiles.
 
-![win-1](https://i.ibb.co/Qvt3kfHP/win-1.png)
-![win-3](https://i.ibb.co/XxL379vs/win-3.png)
+![win-1](https://res.cloudinary.com/dqsgviic/image/upload/win-1.png)
+![win-3](https://res.cloudinary.com/dqsgviic/image/upload/win-3.png)
 
 ---
 
@@ -65,11 +65,11 @@ Now login to the VM.
 
 In event viewer  `(eventvwr.msc)` you can see the **failed** login attempts we made.
 
-![win-4](https://i.ibb.co/prhhMcp6/win-4.png)
+![win-4](https://res.cloudinary.com/dqsgviic/image/upload/win-4.png)
 
 Navigate to **Windows Logs > Security** to analyze failed login attempts (**Event ID 4625**).
 
-![win-5](https://i.ibb.co/hRBxcmHH/win-5.png)
+![win-5](https://res.cloudinary.com/dqsgviic/image/upload/win-5.png)
 
 ---
 
@@ -79,19 +79,19 @@ Navigate to **Windows Logs > Security** to analyze failed login attempts (**Even
 
 In **Azure**, create a **Log Analytics Workspace**.
 
-![17](https://i.ibb.co/Y47jKTrH/17.png)
+![17](https://res.cloudinary.com/dqsgviic/image/upload/17.png)
 
 Deploy **Microsoft Sentinel** and link it to the LAW.
 
-![18](https://i.ibb.co/zTHFwQHr/18.png)
+![18](https://res.cloudinary.com/dqsgviic/image/upload/18.png)
 
 Enable the **Windows Security Events via AMA** connector.
 
-![20](https://i.ibb.co/ymg0BcVB/20.png)
+![20](https://res.cloudinary.com/dqsgviic/image/upload/20.png)
 
 Set up a **Data Collection Rule (DCR)** to send logs from the VM.
 
-![22](https://i.ibb.co/pvyNtcsp/22.png)
+![22](https://res.cloudinary.com/dqsgviic/image/upload/22.png)
 
 ## Step 5: Querying Logs with KQL
 
@@ -107,7 +107,7 @@ SecurityEvent
 
 This command retrieves all failed login attempts in descending order of time.
 
-![38](https://i.ibb.co/67yq2N3Z/38.png)
+![38](https://res.cloudinary.com/dqsgviic/image/upload/38.png)
 
 ---
 
@@ -122,7 +122,7 @@ SecurityEvent
 
 This query isolates failed login attempts targeting the `\ADMINISTRATOR` account in descending order.
 
-![35](https://i.ibb.co/Zp4xrVZ5/35.png)
+![35](https://res.cloudinary.com/dqsgviic/image/upload/35.png)
 
 ### - Identifying Top Attacking IPs
 
@@ -135,7 +135,7 @@ SecurityEvent
 
 This helps identify which IP addresses are attempting the most failed logins.
 
-![36](https://i.ibb.co/XkV83Ncs/36.png)
+![36](https://res.cloudinary.com/dqsgviic/image/upload/36.png)
 
 ### - Detecting Brute-Force Attacks (Multiple Failures in a Short Time Frame)
 
@@ -148,9 +148,9 @@ SecurityEvent
 
 This groups failed login attempts by **10-minute intervals**, helping detect brute-force attack patterns.
 
-![37](https://i.ibb.co/27JHFh7h/37.png)
+![37](https://res.cloudinary.com/dqsgviic/image/upload/37.png)
 
-![39](https://i.ibb.co/9kj8FHrR/39.png)
+![39](https://res.cloudinary.com/dqsgviic/image/upload/39.png)
 
 ---
 
@@ -164,7 +164,7 @@ This groups failed login attempts by **10-minute intervals**, helping detect bru
     - **Search Key:** `network`
 3.  Wait for full import (~54,000 records).
 
-![29](https://i.ibb.co/FbfQtnNF/29.png)
+![29](https://res.cloudinary.com/dqsgviic/image/upload/29.png)
 
 ### - Enhancing logs with Locations
 
@@ -179,7 +179,7 @@ WindowsEvents
 
 This enriches log data by mapping attacker IP addresses to real-world locations.
 
-![40](https://i.ibb.co/23sF09TN/40.png)
+![40](https://res.cloudinary.com/dqsgviic/image/upload/40.png)
 
 ---
 
@@ -230,11 +230,11 @@ This enriches log data by mapping attacker IP addresses to real-world locations.
 4.  Save it as **Win-Attack-Map**.
 5.  Customize map settings for a better view.
 
-![30](https://i.ibb.co/7tfTXr43/30.png)
+![30](https://res.cloudinary.com/dqsgviic/image/upload/30.png)
 
-![31](https://i.ibb.co/chMCYLsV/31.png)
+![31](https://res.cloudinary.com/dqsgviic/image/upload/31.png)
 
-![32](https://i.ibb.co/99nGwM7L/32.png)
+![32](https://res.cloudinary.com/dqsgviic/image/upload/32.png)
 
 ### - Observing the Attack Trends
 
@@ -242,7 +242,7 @@ This enriches log data by mapping attacker IP addresses to real-world locations.
 - Patterns emerge, identifying high-activity attack regions.
 - This visualization provides valuable insights into global cyber threats.
 
-![41](https://i.ibb.co/yFjnwSps/41.png)
+![41](https://res.cloudinary.com/dqsgviic/image/upload/41.png)
 
 ---
 
@@ -274,7 +274,7 @@ SecurityEvent
 
 This alert helps detect brute-force login attempts, allowing security teams to take action before a successful compromise.
 
-![49](https://i.ibb.co/2097D157/49.png)
+![49](https://res.cloudinary.com/dqsgviic/image/upload/49.png)
 
 ### **2. Set Up an Automated Playbook to Send Emails**
 
@@ -323,4 +323,4 @@ To send an email when this alert is triggered, use **Azure Logic Apps** to creat
 
 Who knows, I will be Back !
 
-![illbeback](https://i.ibb.co/PG1P6JhZ/dont-be-in-cgecev.jpg)
+![illbeback](https://res.cloudinary.com/dqsgviic/image/upload/dont-be-in-cgecev.jpg)
