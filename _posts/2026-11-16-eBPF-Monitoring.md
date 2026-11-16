@@ -9,7 +9,7 @@ image:
 
 ## Overview
 
-[Netwatch](http://github.com/isuruwa/netwatch) is a Linux monitoring agent that I built to learn how  the eBPF works in real and to get much more accurate metrics. This attaches eBPF probes to kernel functions and tracepoints, exports the results in a Go userspace agent, and exports them as Prometheus metrics and visualize  in Grafana.
+[Netwatch](https://github.com/isuruwa/netwatch) is a Linux monitoring agent that I built to learn how  the eBPF works in real and to get much more accurate metrics. This attaches eBPF probes to kernel functions and tracepoints, exports the results in a Go userspace agent, and exports them as Prometheus metrics and visualize  in Grafana.
 
 When a server becomes slow & unresponsive , we start troubleshooting by using familiar tools
 These tools are very useful for basic troubleshooting but it mostly shows just averages, these can't tell you how long a process waited for a CPU or how long a each disk request took.
@@ -70,7 +70,7 @@ Maps are also used inside the kernel to remember a start time until the matching
 
 ## Netwatch Introduction
 
-Netwatch is a single Go binary that attaches eBPF probes to kernel events and exposes what they see as Prometheus metrics. Grafana helps expose those metrics as a dashboard.
+[Netwatch](https://github.com/isuruwa/netwatch) is a single Go binary that attaches eBPF probes to kernel events and exposes what they see as Prometheus metrics. Grafana helps expose those metrics as a dashboard.
 
 ```
 netwatch agent (eBPF probes) <── scrape every 15 s ── Prometheus ──> Grafana
